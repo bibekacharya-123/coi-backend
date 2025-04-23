@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const compression = require("compression");
 const connectDB = require("./config/db"); // MongoDB connection
 
+
 // Load environment variables
 dotenv.config();
 
@@ -36,11 +37,18 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const inquiryRoutes = require("./routes/inquiryRoutes");
 const faqRoutes = require("./routes/faqRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const donationRoutes = require('./routes/donationRoutes');
+const membershipRoutes = require('./routes/membershipRoutes');
+const ambassadorRoutes = require('./routes/ambassadorRoutes');
 
 
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/faqs", faqRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use('/api/donations', donationRoutes);
+app.use('/api/memberships', membershipRoutes);
+app.use('/api/ambassadors', ambassadorRoutes);
+
 
 // Health check endpoint
 app.get("/health", (req, res) => {
